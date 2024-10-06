@@ -8,10 +8,10 @@ Este é um aplicativo desenvolvido em Rust, utilizando Docker para containeriza�
 
 ## Requisitos
 
-* Docker:latest
-* Docker Compose:latest
-* Rust:1.78
-* PostgreSQL:13
+* Docker latest
+* Docker Compose latest
+* Rust v1.78
+* PostgreSQL v13
 
 ## Iniciando o Projeto
 
@@ -20,7 +20,7 @@ Este é um aplicativo desenvolvido em Rust, utilizando Docker para containeriza�
 Para iniciar o container do backend, execute o comando abaixo:
 
 ```bash
-docker-compose up -d rustapp
+docker compose up -d rustapp
 ```
 
 ### Frontend
@@ -33,17 +33,17 @@ npm run dev
 
 ### Banco de Dados
 
-O banco de dados utilizado é o PostgreSQL. Para criar o banco de dados, execute o comando abaixo:
+O banco de dados utilizado é o PostgreSQL. Ao iniciar o backend, o banco de dados é iniciado automaticamente. Para criar o banco de dados separadamente, execute o comando abaixo:
 
 ```bash
-docker-compose up -d postgres
+docker compose up -d postgres
 ```
 
 ## Configuração
 
 ### Variáveis de Ambiente
 
-As variáveis de ambiente estão definidas no arquivo `.env`. É necessário criar um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+As variáveis de ambiente estão definidas no arquivo `.env`. É necessário criar um arquivo `.env` na raiz do diretório `backend` com as seguintes variáveis:
 
 ```makefile
 POSTGRES_USER="user"
@@ -56,7 +56,7 @@ POSTGRES_DB="database-name"
 O arquivo `docker-compose.yml` é utilizado para definir os serviços do Docker. Para executar o container do backend, é necessário executar o comando abaixo:
 
 ```bash
-docker-compose up -d rustapp
+docker compose up -d rustapp
 ```
 
 ## Executando o Aplicativo
@@ -64,8 +64,9 @@ docker-compose up -d rustapp
 Para executar o aplicativo, é necessário iniciar o container do backend e o frontend. Execute os comandos abaixo:
 
 ```bash
-docker-compose up -d rustapp
-npm run dev
+cd backend && docker compose up -d rustapp
+cd ..
+cd frontend && npm run dev
 ```
 
 ## Contribuição
