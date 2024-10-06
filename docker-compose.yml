@@ -1,0 +1,26 @@
+services:
+  rustapp:
+    container_name: rustapp
+    image: rust:1.78-bullseye
+    build:
+      context: ./backend
+      dockerfile: rust.dockerfile
+      args:
+        DATABASE_URL: postgresql://gpachecodev:123456@postgres:5432/fullstack_app
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgres
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=gpachecodev
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=fullstack_app
+    ports: 
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+volumes:
+  pg_data:
